@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">    <title>جمعتنا-Jamatna</title>
+<meta name="description" content="لعبة جمعتنا هي تطبيق ويب تفاعلي للجمعات والاستراحات. نظم بطولات، ألعاب ذكاء، تحديات سرعة، وعقابات مضحكة. العبها الآن بدون تحميل!">
+    
+    <meta name="keywords" content="لعبة جمعتنا, العاب جماعية, مسابقات استراحة, فعاليات العيد, لعبة الكنز, مسابقات ثقافية, العاب بالجوال, Jamatna">
+    
+    <meta name="author" content="Abdulmajeed Al-Nufaie">
+
+    <meta property="og:title" content="جمعتنا - بهجتنا في لمتنا 🎮">
+    <meta property="og:description" content="طفشتوا من الروتين؟ حول جمعتكم لبطولة حماسية! كنز، فخاخ، تحديات، وعقابات. اضغط والعب فوراً.">
+    <meta property="og:image" content="رابط_صورة_الشعار_هنا.jpg">
+    <meta property="og:url" content="https://jamatnagame.github.io/Jamatna/">
+    <meta property="og:type" content="website">
     
     <link rel="manifest" href="manifest.json">
     
@@ -44,7 +55,7 @@
             padding-right: env(safe-area-inset-right);
         }
 
-        /* ==================== 1. شاشة التدوير (للجوال بالطول فقط) ==================== */
+        /* ==================== 1. شاشة التدوير ==================== */
         #rotate-message {
             display: none;
             position: fixed;
@@ -124,45 +135,32 @@
         .btn-t1 { background: var(--team1); color: white; }
         .btn-t2 { background: var(--team2); color: white; }
 
-        /* === الهيدر (تعديل التوسيط المطلق) === */
+        /* === الهيدر === */
         .header-controls {
             width: 100%; 
             display: flex; 
             align-items: center;
-            position: relative; /* ضروري لعمل التموضع المطلق داخله */
+            position: relative; 
             padding: 10px 20px; 
             background: rgba(30, 41, 59, 0.95); 
             border-radius: 0 0 15px 15px; 
             z-index: 100; 
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             min-height: 60px;
-            justify-content: space-between; /* يوزع زر الرجوع والعنوان */
+            justify-content: space-between; 
         }
 
-        /* زر الرجوع */
-        .header-controls .btn-back {
-            z-index: 10; /* لضمان قابلية الضغط */
-            position: relative;
-        }
+        .header-controls .btn-back { z-index: 10; position: relative; }
 
-        /* عبارة التمرير أو العناوين المتوسطة */
         .center-absolute {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%); /* يضمن التوسيط الأفقي والعمودي تماماً */
-            white-space: nowrap;
-            z-index: 5;
-            text-align: center;
+            position: absolute; left: 50%; top: 50%;
+            transform: translate(-50%, -50%); 
+            white-space: nowrap; z-index: 5; text-align: center;
         }
 
         .scroll-hint {
-            color: #94a3b8; 
-            font-size: 0.8rem; 
-            animation: bounce 2s infinite; 
-            background: rgba(0,0,0,0.3); 
-            padding: 5px 15px; 
-            border-radius: 20px;
+            color: #94a3b8; font-size: 0.8rem; animation: bounce 2s infinite; 
+            background: rgba(0,0,0,0.3); padding: 5px 15px; border-radius: 20px;
         }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-5px);} 60% {transform: translateY(-3px);} }
 
@@ -187,7 +185,6 @@
             border: 2px solid #475569; color: white; border-radius: 10px; 
             font-family: 'Cairo'; font-size: 1rem; text-align: center;
         }
-        /* تنسيق الـ Placeholder ليكون شفافاً وواضحاً */
         ::placeholder { color: #94a3b8; opacity: 0.7; }
         input:focus { border-color: var(--primary); }
 
@@ -274,98 +271,118 @@
 
         /* ==================== 3. 🖥️📱 التعامل الذكي مع الشاشات (3 مستويات) ==================== */
 
+        /* 1. الشاشات الكبيرة (أجهزة لوحية ولابتوب) */
         @media screen and (orientation: landscape) and (min-width: 1025px) {
-            #main-game-container {
-                width: 100%;
-                margin: 0;
-            }
-            .hub-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 20px;
-            }
+            #main-game-container { width: 100%; margin: 0; }
+            .hub-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
             .game-card i { font-size: 3rem !important; margin-bottom: 10px; }
             .game-card h3 { font-size: 1.2rem !important; }
         }
 
+        /* 2. الجوالات المتوسطة */
         @media screen and (orientation: landscape) and (min-width: 601px) and (max-width: 1024px) {
-            body { font-size: 14px; }
-            .hub-grid { 
-                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
-                gap: 12px; 
-            }
-            .game-card { min-height: 110px; padding: 8px; }
-            .game-card i { font-size: 2.2rem !important; margin-bottom: 8px; }
-            .game-card h3 { font-size: 1rem !important; }
-            
-            .node { width: 40px; height: 40px; font-size: 0.9rem; }
-            .hex-cell { width: 45px; height: 52px; font-size: 1rem; }
-            .timer-huge { font-size: 3rem; }
+            body { font-size: 12px; }
+            .hub-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+            .game-card { min-height: 90px; padding: 5px; }
         }
 
-        @media screen and (orientation: landscape) and (max-width: 1024px) {
+        /* 3. الجوالات الصغيرة جداً (الوضع العريض - Mobile Landscape) - تصغير قصوى */
+        @media screen and (orientation: landscape) and (max-height: 500px) {
             html { -webkit-text-size-adjust: 100%; }
-            body { font-size: 8px; } 
+            body { font-size: 9px !important; } /* خط صغير جدا */
 
+            /* شريط النقاط مصغر جداً */
             .sticky-score-bar {
-                position: fixed; 
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                padding-bottom: env(safe-area-inset-bottom); 
-                padding-top: 5px;
-                min-height: 25px;
-                z-index: 9999;
-                border-top: 2px solid var(--primary);
+                position: fixed; bottom: 0; left: 0; width: 100%;
+                padding-bottom: env(safe-area-inset-bottom); padding-top: 2px;
+                min-height: 20px; z-index: 9999; border-top: 1px solid var(--primary);
             }
+            .score-box { font-size: 0.8rem; }
             
-            .screen { padding-bottom: 40px !important; }
+            .screen { padding-bottom: 35px !important; padding-top: 5px !important; }
+            .header-controls { min-height: 30px; padding: 2px 10px; margin-bottom: 5px; }
+            
+            /* أزرار أصغر */
+            .btn { padding: 3px 8px; font-size: 0.7rem; border-radius: 6px; margin: 2px; height: auto; }
+            .btn i { font-size: 0.8rem; }
+            
+            /* Landing Screen */
+            .landing-container h1 { font-size: 1.4rem !important; margin-bottom: 2px; }
+            .social-card { padding: 5px; gap: 5px; max-width: 300px; }
+            .social-link { padding: 5px; font-size: 0.7rem; }
+            .install-hint { margin-top: 10px; padding: 5px; }
 
-            .header-controls { min-height: 25px; padding: 2px 5px; }
-            .btn { padding: 2px 6px; font-size: 0.65rem; border-radius: 4px; margin: 1px; }
-            .btn i { font-size: 0.7rem; } 
-            .center-absolute .scroll-hint { display: none; } 
-            .landing-container h1 { font-size: 1.2rem !important; margin-bottom: 5px; }
-
-            #screen-cats .cat-grid { 
-                grid-template-columns: repeat(auto-fit, minmax(28px, 1fr)); 
-                gap: 2px; margin: 2px 0;
-            }
-            #screen-cats .cat-card { 
-                min-height: 18px; 
-                padding: 0px; border-radius: 4px; border-width: 1px;
-            }
-            #screen-cats .cat-header { 
-                font-size: 0.55rem; padding: 1px 0; gap: 0; 
-            }
-            #screen-cats .cat-header i { 
-                font-size: 0.7rem; display: block; margin: 0 auto;
-            }
-            #screen-cats .diff-opt { padding: 2px 0; font-size: 0.5rem; line-height: 1; }
-
-            .modal-box { padding: 0px; width: 75%; max-width: 290px; }
-            .modal-box h2 { font-size: 1.1rem; margin: 0px 0; }
-            .option-btn { padding: 0px; font-size: 0.5rem; }
-
-            .hub-grid { 
-                grid-template-columns: repeat(auto-fit, minmax(65px, 1fr)); 
-                gap: 4px; padding-bottom: 40px; width: 99%;
-            }
-            .game-card { min-height: 55px; padding: 2px; }
-            .game-card i { font-size: 1.1rem !important; margin-bottom: 2px; }
+            /* Hub */
+            .hub-grid { grid-template-columns: repeat(auto-fit, minmax(20px, 1fr)); gap: 15px; padding-bottom: 25px; }
+            .game-card { min-height: 35px; padding: 3px; border-radius: 10px; }
+            .game-card i { font-size: 1.1rem !important; margin-bottom: 1px; }
             .game-card h3 { font-size: 0.65rem !important; margin: 0; }
+            .game-card p { display: none; } /* إخفاء الوصف الصغير لتوفير المساحة */
 
-            .treasure-map { min-height: 120px; max-width: 99%; }
-            .node { width: 22px; height: 22px; font-size: 0.6rem; } 
-            .hive-wrapper { transform: scale(0.9); margin-top: 5px; margin-bottom: 30px; } 
+            /* Treasure Map (تصغير العقد والمسافات بشكل كبير) */
+            .treasure-map { min-height: auto; max-width: 95%; margin-top: 5px; }
+            .node { width: 28px; height: 28px; font-size: 0.7rem; border-width: 2px; }
+            .path-row { gap: 8px; margin: 2px 0; }
+            
+            /* Hive (تصغير الخلايا) */
+            .hive-wrapper { transform: scale(0.65); margin: -10px 0 30px 0; } 
+            .hex-row { margin-top: -5px; }
 
-            #q-timer {
-                font-size: 0.7rem !important; padding: 1px 6px !important; min-width: 25px !important;
-                transform: translate(-5px, -5px); 
-            }
-            #wd-timer, #pn-timer {
-                font-size: 0.9rem !important; padding: 2px 8px !important; 
-                display: table !important; margin: 2px auto !important;
-            }
+            /* Word Game (تصغير الحروف لمنع اختفاء الوقت) */
+            .letter-tile, .slot { width: 28px; height: 28px; font-size: 0.9rem; border-radius: 4px; border-bottom-width: 2px; }
+            .word-container { gap: 3px; margin: 2px 0; }
+            #wd-topic-display { padding: 2px 10px; font-size: 0.8rem; margin-bottom: 5px; }
+
+            /* Timer */
+            .timer-huge { font-size: 2.5rem; }
+            #q-timer { font-size: 0.8rem !important; padding: 1px 6px !important; min-width: 30px !important; transform: translate(-2px, -2px); border-width: 1px; }
+            #wd-timer, #pn-timer { font-size: 0.9rem !important; padding: 2px 8px !important; display: table !important; margin: 0px auto 2px auto !important; }
+
+            /* Modals (تصغير النوافذ المنبثقة وأزرار الإجابة) */
+            .modal-box { padding: 4px; width: 80%; max-width: 300px; max-height: 70vh; }
+            .modal-box h2 { font-size: 1rem; margin: 2px 0; }
+            .modal-box h3 { font-size: 0.9rem; margin: 2px 0; }
+            .option-btn { padding: 6px 8px; font-size: 0.75rem; margin: 2px 0; border-width: 1px; }
+            
+            /* Setup Inputs */
+            .setup-box { padding: 10px; }
+            input, textarea { padding: 5px; margin: 2px 0; font-size: 0.8rem; height: auto; }
+            h3 { font-size: 1rem; margin-bottom: 5px; }
+
+            /* ==================== تخصيص صفحة الأسئلة (الأيقونات الستة) ==================== */
+
+/* 1. الشبكة الحاوية للأيقونات */
+.cat-grid {
+    /* الرقم 80px هو عرض البطاقة، صغره (مثلاً 70px) لتصبح البطاقات أصغر */
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)) !important;
+    gap: 5px !important; /* المسافة بين البطاقات */
+    margin: 5px 0 !important;
+}
+
+/* 2. البطاقة نفسها (المربع) */
+.cat-card {
+    border-radius: 6px !important; /* تدوير الزوايا */
+    border-width: 1px !important;
+}
+
+/* 3. الجزء العلوي (الأيقونة + الاسم) */
+.cat-header {
+    padding: 4px !important;
+    font-size: 0.75rem !important; /* حجم خط اسم القسم */
+    gap: 3px !important;
+}
+
+/* 4. حجم الأيقونة (الرمز التعبيري) داخل البطاقة */
+.cat-header i {
+    font-size: 0rem !important; /* صغر هذا الرقم لتصغير الأيقونة */
+}
+
+/* 5. أزرار الصعوبة (سهل/متوسط/صعب) أسفل البطاقة */
+.diff-opt {
+    padding: 2px 0 !important;
+    font-size: 0.6rem !important; /* حجم خط الصعوبة */
+}
+
         }
 
     </style>
@@ -394,6 +411,13 @@
         <audio id="snd-drum" src="https://assets.mixkit.co/sfx/preview/mixkit-drum-roll-566.mp3"></audio>
 
         <div id="screen-landing" class="active screen">
+            <div style="position: absolute; top: 10px; right: 10px; z-index: 20; display: flex; flex-direction: column; align-items: center; cursor: pointer;" onclick="showGameGuide()">
+                <div style="background: rgba(255,255,255,0.1); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                    <i class="fas fa-question" style="color: var(--primary); font-size: 1.2rem;"></i>
+                </div>
+                <span style="font-size: 0.6rem; color: #cbd5e1; margin-top: 3px; font-weight: bold; text-shadow: 0 1px 2px black; white-space: nowrap;">كيف تلعب؟</span>
+            </div>
+
             <div class="landing-container" style="display:flex; flex-direction:column; align-items:center; width:100%;">
                 <h1 style="color: var(--primary); text-align: center; margin: 0;">جمعتنا-Jamatna</h1>
                 <p style="color: #94a3b8; text-align: center; margin-bottom: 20px;">بهجتنا في جمعتنا</p>
@@ -582,7 +606,7 @@
                 islamic: {
                     easy: [
                         // أضف هذه الأسئلة إلى قائمة easy الموجودة في DB.treasure.islamic
-[
+
     { q: "من هو النبي الذي ألقي في النار وهو شاب؟", a: "إبراهيم", h: "خليل الله", o: ["إبراهيم", "موسى", "عيسى", "يحيى"] },
     { q: "ما اسم والدة النبي إسماعيل عليه السلام؟", a: "هاجر", h: "سعت بين الصفا والمروة", o: ["هاجر", "سارة", "آسيا", "مريم"] },
     { q: "ما هي السورة التي بدأت بـ 'ألهاكم التكاثر'؟", a: "التكاثر", h: "تتحدث عن الانشغال بالدنيا", o: ["التكاثر", "العصر", "الهمزة", "القارعة"] },
@@ -1090,7 +1114,7 @@
         h: "ألم تر كيف فعل ربك",
         o: ["الفيل", "قريش", "الماعون", "المسد"]
     }
-]
+
                         ],
     medium: [
         {
@@ -2622,12 +2646,6 @@
             a: "أستراليا (أوقيانوسيا)",
             h: "هي قارة ودولة في نفس الوقت",
             o: ["أستراليا", "أوروبا", "أنتاركتيكا", "أمريكا الجنوبية"]
-        },
-        {
-            q: "أين يقع تمثال الحرية؟",
-            a: "الولايات المتحدة (نيويورك)",
-            h: "أهدته فرنسا لأمريكا",
-            o: ["الولايات المتحدة", "فرنسا", "إنجلترا", "كندا"]
         },
         {
             q: "ما هي عاصمة سوريا؟",
@@ -6268,12 +6286,7 @@
         h: "لغز سهل",
         o: ["العمر", "المال", "الماء", "الوزن"]
     },
-    {
-        q: "ما هي الدولة التي قدمت تمثال الحرية هدية لأمريكا؟",
-        a: "فرنسا",
-        h: "دولة أوروبية عاصمتها باريس",
-        o: ["فرنسا", "بريطانيا", "ألمانيا", "إيطاليا"]
-    },
+   
     {
         q: "ما هو أصل أكلة 'البيتزا'؟",
         a: "إيطاليا",
@@ -6758,12 +6771,7 @@
             h: "الطفل يولد بعظام أكثر تلتحم لاحقاً",
             o: ["206", "200", "210", "195"]
         },
-        {
-            q: "ما هي الدولة التي أهدت تمثال الحرية للولايات المتحدة؟",
-            a: "فرنسا",
-            h: "بمناسبة مئوية الاستقلال الأمريكي",
-            o: ["فرنسا", "بريطانيا", "ألمانيا", "إيطاليا"]
-        },
+       
         {
             q: "ما هو أصلب مادة طبيعية على وجه الأرض؟",
             a: "الماس",
@@ -7385,12 +7393,7 @@
             h: "بمعنى الفراغ أو الخلو",
             o: ["الصِفر", "العدم", "الفراغ", "النقطة"]
         },
-        {
-            q: "ما هو اللون الأصلي لتمثال الحرية عند بنائه؟",
-            a: "بني نحاسي",
-            h: "لون النحاس قبل أن يتأكسد ويخضر",
-            o: ["بني نحاسي", "أخضر", "أبيض", "ذهبي"]
-        },
+       
         {
             q: "ما هو الحيوان الذي يمتلك قلباً يزن حوالي 180 كجم؟",
             a: "الحوت الأزرق",
@@ -8419,7 +8422,6 @@ geo: {
     { q: "ما هي عاصمة المملكة العربية السعودية؟", a: "رياض", h: "أكبر مدينة سعودية", o: ["رياض", "رباط", "روما", "رام الله"] },
     { q: "ما هي عاصمة إيطاليا؟", a: "روما", h: "المدينة الخالدة", o: ["روما", "ريغا", "رياض", "رباط"] },
     { q: "ما هي عاصمة المغرب؟", a: "رباط", h: "على المحيط الأطلسي", o: ["رباط", "رياض", "روما", "ريو"] },
-    { q: "مدينة برازيلية تشتهر بتمثال المسيح؟", a: "ريو دي جانيرو", h: "الكرنفال", o: ["ريو", "روما", "رين", "رباط"] },
     { q: "العملة الرسمية للسعودية؟", a: "ريال", h: "عملة خليجية", o: ["ريال", "روبل", "روبية", "راند"] },
     { q: "مقر السلطة الفلسطينية؟", a: "رام الله", h: "في الضفة الغربية", o: ["رام الله", "رفح", "رملة", "روابي"] },
     { q: "مدينة ساحلية في مصر (رشيد)؟", a: "رشيد", h: "فرع النيل", o: ["رشيد", "رفح", "رياض", "رماح"] },
@@ -8779,7 +8781,6 @@ geo: {
 
         // --- حرف الراء (ر) ---
         {q: "عاصمة المغرب؟", a: "رباط", char: "ر", h: "تقع على المحيط الأطلسي", o: ["رباط", "روما", "رادس"]},
-        {q: "مدينة برازيلية (الكرنفال)؟", a: "ريو دي جانيرو", char: "ر", h: "تشتهر بتمثال المسيح والشواطئ", o: ["ريو", "رسيف", "روندونيا"]},
         {q: "دولة أفريقية (كيغالي عاصمتها)؟", a: "رواندا", char: "ر", h: "بلد الألف تلة", o: ["رواندا", "روديسيا", "رأ س الأخضر"]},
         {q: "نهر في أوروبا (ألمانيا وفرنسا)؟", a: "راين", char: "ر", h: "شريان أوروبا الاقتصادي", o: ["راين", "رون", "روبيكون"]},
         {q: "محافظة في الحدود الشمالية للسعودية؟", a: "رفحاء", char: "ر", h: "تقع على طريق الحجاج القديم", o: ["رفحاء", "رس", "رنية"]},
@@ -11166,7 +11167,6 @@ general: {
             {q: "ما هي الدولة التي يوجد بها برج خليفة؟", a: "الإمارات", o: []},
             {q: "ما هي عاصمة المملكة المتحدة (بريطانيا)؟", a: "لندن", o: []},
             {q: "ما هي أصغر قارة في العالم؟", a: "أستراليا", o: []},
-            {q: "أين يقع تمثال الحرية؟", a: "الولايات المتحدة (نيويورك)", o: []},
             {q: "ما هي عاصمة الصين؟", a: "بكين", o: []},
             {q: "ما هو البحر الذي يفصل بين أفريقيا وأوروبا؟", a: "البحر المتوسط", o: []},
             {q: "ما هي عاصمة ألمانيا؟", a: "برلين", o: []},
@@ -12870,9 +12870,7 @@ general: {
         
         // --- أشياء وأماكن ---
         {e: "🌻+☀️", a: "دوار الشمس", h: "زهرة تتبع الشمس"},
-        {e: "🎮+🕹️", a: "بلايستيشن", h: "جهاز ألعاب"},
         {e: "🏎️+🏁", a: "سباق", h: "فورميلا"},
-        {e: "🥊+🥊", a: "ملاكمة", h: "رياضة قتالية"},
         {e: "🏀+🗑️", a: "كرة سلة", h: "رمي الكرة في الشبكة"},
         {e: "🚪+🔔", a: "جرس الباب", h: "دينغ دونغ"},
         {e: "🕶️+☀️", a: "نظارة شمسية", h: "تحمي العين"},
@@ -12891,7 +12889,6 @@ general: {
         // --- مفاهيم وتكنولوجيا ---
         {e: "🍎+📱", a: "أبل", h: "شركة آيفون"},
         {e: "👻+💛", a: "سناب شات", h: "تطبيق تواصل"},
-        {e: "🐦+🟦", a: "تويتر", h: "تطبيق (إكس حالياً)"},
         {e: "📺+▶️", a: "يوتيوب", h: "منصة فيديو"},
         {e: "👽+🛸", a: "فضائي", h: "زائر من الفضاء"},
         {e: "💻+🦠", a: "فيروس كمبيوتر", h: "يضر الجهاز"},
@@ -12934,7 +12931,6 @@ general: {
         {e: "🦜+🏴‍☠️", a: "سيلفر", h: "مكان الببغاء"},
         {e: "🧛‍♂️+⚰️", a: "دراكولا", h: "ينام في تابوت"},
         {e: "🕵️‍♂️+🔎+🧥", a: "شرلوك هولمز", h: "المحقق الشهير"},
-        {e: "🎩+🐰", a: "خفة يد", h: "أرنب من القبعة"}
     ]
                 },
 
@@ -13095,7 +13091,7 @@ general: {
     ]
                 }
             }
-        };
+        }; 
 
         const categories = [
             {id:'islamic', name:'إسلاميات', icon:'☪️'}, 
@@ -13165,6 +13161,31 @@ general: {
             document.getElementById('sb-name-t2').innerText = state.t2.name;
             let msg = state.isTournament ? `🏆 باقي ${6 - state.playedGames.size} ألعاب` : "لعب حر";
             document.getElementById('game-status-text').innerText = msg;
+        }
+
+        // --- وظيفة دليل اللعبة الجديدة ---
+        function showGameGuide() {
+            const guideContent = `
+                <div style="text-align: right; direction: rtl;">
+                    <h2 style="color:var(--primary); margin-bottom:10px; text-align:center;">📖 دليل اللعبة</h2>
+                    <div style="text-align:right; font-size:0.85rem; line-height:1.6; max-height:60vh; overflow-y:auto; padding-left:10px;">
+                        <p><strong style="color:var(--accent)">🏴‍☠️ الكنز:</strong> سباق للوصول للقمة! كل إجابة صحيحة تقدمك خطوة. انتبه من "الأفخاخ" التي قد تعيدك للخلف.</p>
+                        <hr style="border-color:#334155; margin:5px 0">
+                        <p><strong style="color:var(--primary)">🐝 الخلية:</strong> استراتيجية وذكاء. سيطر على الخلايا لربط الجانبين ببعضهما. اقطع الطريق على خصمك!</p>
+                        <hr style="border-color:#334155; margin:5px 0">
+                        <p><strong style="color:var(--team1)">⚡ من الأسرع؟:</strong> السرعة هي الحكم! سؤال يظهر للجميع، من يطلب ضغط الجرس (أو يصرخ) أولاً ويجيب صح يكسب.</p>
+                        <hr style="border-color:#334155; margin:5px 0">
+                        <p><strong style="color:var(--team2)">🔤 رتب الحروف:</strong> كلمة مبعثرة وتلميح. رتب الحروف لتكتشف الكلمة قبل انتهاء الوقت.</p>
+                        <hr style="border-color:#334155; margin:5px 0">
+                        <p><strong style="color:#a855f7">🎭 بدون كلام:</strong> لغز بالإيموجي! حاول تخمين اسم المثل أو الفكرة من خلال الرموز التعبيرية فقط.</p>
+                        <hr style="border-color:#334155; margin:5px 0">
+                        <p><strong style="color:#ec4899">🧠 الذاكرة:</strong> تحدي التركيز. احفظ ترتيب العناصر جيداً قبل أن تختفي، ثم أجب عن السؤال المخادع.</p>
+                        <br>
+                        <p style="background:rgba(255,255,255,0.05); padding:5px; border-radius:5px;"><small>💡 <strong>مساعدات:</strong> تتوفر في الأسئلة خيارات مثل (حذف إجابة) أو (معلومة إضافية) مقابل خصم جزء من النقاط.</small></p>
+                    </div>
+                </div>
+            `;
+            showCustomModal(guideContent, true);
         }
 
         function goBack() {
